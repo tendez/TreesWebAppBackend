@@ -1,8 +1,8 @@
 package czechowski.treeswebappbackend.repository;
 
 
-import org.springframework.data.jpa.repository.JpaRepository;
 import czechowski.treeswebappbackend.model.Uzytkownicy;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 

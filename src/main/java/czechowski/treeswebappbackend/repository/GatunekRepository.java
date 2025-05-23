@@ -1,8 +1,8 @@
 package czechowski.treeswebappbackend.repository;
 
 
-
-import org.springframework.data.jpa.repository.JpaRepository;
 import czechowski.treeswebappbackend.model.Gatunek;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface GatunekRepository extends JpaRepository<Gatunek, Long> {}
+public interface GatunekRepository extends JpaRepository<Gatunek, Long> {
+}

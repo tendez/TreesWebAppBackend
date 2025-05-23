@@ -1,4 +1,5 @@
 package czechowski.treeswebappbackend.auth;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
