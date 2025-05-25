@@ -10,6 +10,7 @@ import org.hibernate.annotations.Nationalized;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import czechowski.treeswebappbackend.token.Token;
 
 import java.util.Collection;
 import java.util.LinkedHashSet;
@@ -40,6 +41,9 @@ public class Uzytkownicy implements UserDetails {
     @ColumnDefault("'user'")
     @Column(name = "role", nullable = false, length = 50)
     private String role;
+
+    @OneToMany(mappedBy = "userID")
+    private List<Token> tokens;
 
     @OneToMany(mappedBy = "userID")
     private Set<Sprzedaz> sprzedazs = new LinkedHashSet<>();
