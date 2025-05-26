@@ -1,6 +1,5 @@
 package czechowski.treeswebappbackend.service;
 
-import czechowski.treeswebappbackend.dto.GatunekDTO;
 import czechowski.treeswebappbackend.dto.WielkoscDTO;
 import czechowski.treeswebappbackend.repository.WielkoscRepository;
 import org.springframework.beans.factory.annotation.Autowired;

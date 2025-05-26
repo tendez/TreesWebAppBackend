@@ -1,8 +1,6 @@
 package czechowski.treeswebappbackend.service;
 
-import czechowski.treeswebappbackend.dto.GatunekDTO;
 import czechowski.treeswebappbackend.dto.MagazynDTO;
-import czechowski.treeswebappbackend.model.Magazyn;
 import czechowski.treeswebappbackend.model.Stoisko;
 import czechowski.treeswebappbackend.repository.MagazynRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +12,7 @@ import java.util.List;
 public class MagazynService {
 
     @Autowired
-    private  MagazynRepository magazynRepository;
+    private MagazynRepository magazynRepository;
 
     public List<MagazynDTO> findAllMagazyn(Stoisko stoiskoId) {
         return magazynRepository.findMagazynByStoiskoid(stoiskoId)
@@ -25,7 +23,7 @@ public class MagazynService {
                         magazyn.getWielkoscid().getId(),
                         magazyn.getStoiskoid().getId(),
                         magazyn.getIlosc()
-                        ))
+                ))
                 .toList();
 
 

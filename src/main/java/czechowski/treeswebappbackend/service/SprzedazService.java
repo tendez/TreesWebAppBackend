@@ -2,7 +2,6 @@ package czechowski.treeswebappbackend.service;
 
 
 import czechowski.treeswebappbackend.dto.SprzedazDTO;
-import czechowski.treeswebappbackend.model.Sprzedaz;
 import czechowski.treeswebappbackend.model.Stoisko;
 import czechowski.treeswebappbackend.model.Uzytkownicy;
 import czechowski.treeswebappbackend.repository.SprzedazRepository;
@@ -11,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class SprzedazService {
@@ -33,7 +31,7 @@ public class SprzedazService {
                 .toList();
     }
 
-    public List<SprzedazDTO> findSprzedazDTOsByUserID(Uzytkownicy userID){
+    public List<SprzedazDTO> findSprzedazDTOsByUserID(Uzytkownicy userID) {
         return sprzedazRepository.findAllByUserID(userID)
                 .stream()
                 .map(sprzedaz -> new SprzedazDTO(
@@ -47,10 +45,10 @@ public class SprzedazService {
                 .toList();
     }
 
-    public List<SprzedazDTO> findSprzedazDTOsByUserIDAndDatasprzedazy(Uzytkownicy userID, String dataSprzedazy){
+    public List<SprzedazDTO> findSprzedazDTOsByUserIDAndDatasprzedazy(Uzytkownicy userID, String dataSprzedazy) {
         return sprzedazRepository.findAllByUserIDAndDatasprzedazy(userID, LocalDate.parse(dataSprzedazy))
                 .stream()
-                .map(sprzedaz -> new SprzedazDTO( sprzedaz.getId(),
+                .map(sprzedaz -> new SprzedazDTO(sprzedaz.getId(),
                         sprzedaz.getGatunekID().getId(),
                         sprzedaz.getWielkoscID().getId(),
                         sprzedaz.getStoiskoID().getId(),

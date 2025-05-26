@@ -36,13 +36,11 @@ public class AuthenticationService {
     }
 
 
-
-
     public AuthenticationResponse authenticate(AuthenticationRequest request) {
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getLogin(), request.getPassword()));
         var user = repository.findByLogin(request.getLogin()).orElseThrow();
         var jwtToken = jwtService.generateToken(user);
-        revokeAllUserTokens(user); 
+        revokeAllUserTokens(user);
         saveUserToken(user, jwtToken);
 
 

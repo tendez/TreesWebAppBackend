@@ -1,6 +1,5 @@
 package czechowski.treeswebappbackend.controller;
 
-import czechowski.treeswebappbackend.dto.StoiskoDTO;
 import czechowski.treeswebappbackend.dto.WielkoscDTO;
 import czechowski.treeswebappbackend.service.WielkoscService;
 import lombok.RequiredArgsConstructor;

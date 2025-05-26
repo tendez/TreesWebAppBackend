@@ -2,15 +2,11 @@ package czechowski.treeswebappbackend.service;
 
 
 import czechowski.treeswebappbackend.dto.GatunekDTO;
-import czechowski.treeswebappbackend.dto.SprzedazDTO;
-import czechowski.treeswebappbackend.model.Stoisko;
 import czechowski.treeswebappbackend.repository.GatunekRepository;
-import czechowski.treeswebappbackend.repository.SprzedazRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class GatunekService {
@@ -24,7 +20,7 @@ public class GatunekService {
                 .map(gatunek -> new GatunekDTO(
                         gatunek.getId(),
                         gatunek.getNazwagatunku()))
-                        .toList();
+                .toList();
 
 
     }

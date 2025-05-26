@@ -21,17 +21,15 @@ public class SprzedazController {
     private final SprzedazService sprzedazService;
 
     @GetMapping("/bystoiskoid/{id}")
-    public List<SprzedazDTO> getSprzedazByStoiskoId(@PathVariable("id") Stoisko stoiskoId){
+    public List<SprzedazDTO> getSprzedazByStoiskoId(@PathVariable("id") Stoisko stoiskoId) {
         return sprzedazService.findSprzedazDTOsByStoiskoId(stoiskoId);
     }
+
     @GetMapping("/byuserid/{id}")
-    public List<SprzedazDTO> getSprzedazByUserId(@PathVariable("id")Uzytkownicy userId){
+    public List<SprzedazDTO> getSprzedazByUserId(@PathVariable("id") Uzytkownicy userId) {
         return sprzedazService.findSprzedazDTOsByUserID(userId);
 
     }
-
-
-
 
 
 }
