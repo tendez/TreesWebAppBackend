@@ -9,6 +9,7 @@ import czechowski.treeswebappbackend.repository.SprzedazRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -29,7 +30,7 @@ public class SprzedazService {
                         sprzedaz.getUserID().getId(),
                         sprzedaz.getCena().intValue(),
                         sprzedaz.getDatasprzedazy().toString()))
-                .collect(Collectors.toList());
+                .toList();
     }
 
     public List<SprzedazDTO> findSprzedazDTOsByUserID(Uzytkownicy userID){
@@ -43,11 +44,20 @@ public class SprzedazService {
                         sprzedaz.getUserID().getId(),
                         sprzedaz.getCena().intValue(),
                         sprzedaz.getDatasprzedazy().toString()))
-                .collect(Collectors.toList());
+                .toList();
     }
 
     public List<SprzedazDTO> findSprzedazDTOsByUserIDAndDatasprzedazy(Uzytkownicy userID, String dataSprzedazy){
-        return sprzedazRepository.findAllByUserIDAndDatasprzedazy(userID, dataSprzedazy)
+        return sprzedazRepository.findAllByUserIDAndDatasprzedazy(userID, LocalDate.parse(dataSprzedazy))
+                .stream()
+                .map(sprzedaz -> new SprzedazDTO( sprzedaz.getId(),
+                        sprzedaz.getGatunekID().getId(),
+                        sprzedaz.getWielkoscID().getId(),
+                        sprzedaz.getStoiskoID().getId(),
+                        sprzedaz.getUserID().getId(),
+                        sprzedaz.getCena().intValue(),
+                        sprzedaz.getDatasprzedazy().toString()))
+                .toList();
     }
 }
 
