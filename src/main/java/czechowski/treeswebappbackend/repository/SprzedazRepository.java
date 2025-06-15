@@ -15,7 +15,10 @@ public interface SprzedazRepository extends JpaRepository<Sprzedaz, Integer> {
 
     List<Sprzedaz> findAllByUserID(Uzytkownicy userID);
 
+    List<Sprzedaz> findByStoiskoID(Stoisko stoiskoID);
+
     List<Sprzedaz> findAllByUserIDAndDatasprzedazy(Uzytkownicy userID, LocalDate datasprzedazy);
 
 
+    List<Sprzedaz> findByUserID(Uzytkownicy userID);
 }

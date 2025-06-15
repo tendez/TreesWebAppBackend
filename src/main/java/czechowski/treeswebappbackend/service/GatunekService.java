@@ -24,5 +24,10 @@ public class GatunekService {
 
 
     }
+    public GatunekDTO findGatunekById(Integer id) {
+        var gatunek = gatunekRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Gatunek nie znaleziony"));
+        return new GatunekDTO(gatunek.getId(), gatunek.getNazwagatunku());
+    }
 
 }

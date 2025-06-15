@@ -22,4 +22,9 @@ public class StoiskoService {
                         stoisko.getStoiskonazwa()))
                 .toList();
     }
+    public StoiskoDTO findStoiskoById(Integer id) {
+        var stoisko = stoiskoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Stoisko nie znalezione"));
+        return new StoiskoDTO(stoisko.getId(), stoisko.getStoiskonazwa());
+    }
 }

@@ -1,21 +1,30 @@
 package czechowski.treeswebappbackend.service;
 
 
+import czechowski.treeswebappbackend.dto.CreateSprzedazRequest;
 import czechowski.treeswebappbackend.dto.SprzedazDTO;
-import czechowski.treeswebappbackend.model.Stoisko;
-import czechowski.treeswebappbackend.model.Uzytkownicy;
-import czechowski.treeswebappbackend.repository.SprzedazRepository;
+import czechowski.treeswebappbackend.dto.SprzedazDetailDTO;
+import czechowski.treeswebappbackend.model.*;
+import czechowski.treeswebappbackend.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class SprzedazService {
 
     @Autowired
     private SprzedazRepository sprzedazRepository;
+    private  UzytkownicyRepository uzytkownicyRepository;
+    private  StoiskoRepository stoiskoRepository;
+    private  GatunekRepository gatunekRepository;
+    private  WielkoscRepository wielkoscRepository;
+
 
     public List<SprzedazDTO> findSprzedazDTOsByStoiskoId(Stoisko stoisko) {
         return sprzedazRepository.findAllSprzedazByStoiskoID(stoisko)
@@ -56,6 +65,79 @@ public class SprzedazService {
                         sprzedaz.getCena().intValue(),
                         sprzedaz.getDatasprzedazy().toString()))
                 .toList();
+    }
+    public SprzedazDTO createSprzedaz(CreateSprzedazRequest request, String userLogin) {
+
+        Uzytkownicy user = uzytkownicyRepository.findByLogin(userLogin)
+                .orElseThrow(() -> new RuntimeException("Użytkownik nie znaleziony"));
+
+
+        Stoisko stoisko = stoiskoRepository.findById(request.stoiskoId())
+                .orElseThrow(() -> new RuntimeException("Stoisko nie znalezione"));
+
+
+        Gatunek gatunek = gatunekRepository.findById(request.gatunekId())
+                .orElseThrow(() -> new RuntimeException("Gatunek nie znaleziony"));
+
+
+        Wielkosc wielkosc = wielkoscRepository.findById(request.wielkoscId())
+                .orElseThrow(() -> new RuntimeException("Wielkość nie znaleziona"));
+
+
+        Sprzedaz sprzedaz = Sprzedaz.builder()
+                .gatunekID(gatunek)
+                .wielkoscID(wielkosc)
+                .stoiskoID(stoisko)
+                .userID(user)
+                .cena(BigDecimal.valueOf(request.cena()))
+                .datasprzedazy(LocalDate.now())
+                .build();
+
+        Sprzedaz savedSprzedaz = sprzedazRepository.save(sprzedaz);
+
+        return new SprzedazDTO(
+                savedSprzedaz.getId(),
+                savedSprzedaz.getGatunekID().getId(),
+                savedSprzedaz.getWielkoscID().getId(),
+                savedSprzedaz.getStoiskoID().getId(),
+                savedSprzedaz.getUserID().getId(),
+                savedSprzedaz.getCena().intValue(),
+                savedSprzedaz.getDatasprzedazy().toString()
+        );
+    }
+    public List<SprzedazDetailDTO> findSprzedazDetailsById(Stoisko stoisko) {
+
+        List<Sprzedaz> sprzedaze = sprzedazRepository.findByStoiskoID(stoisko);
+
+        return sprzedaze.stream()
+                .map(sprzedaz -> new SprzedazDetailDTO(
+                        sprzedaz.getId(),
+                        sprzedaz.getGatunekID().getNazwagatunku(),
+                        sprzedaz.getWielkoscID().getOpiswielkosci(),
+                        sprzedaz.getStoiskoID().getStoiskonazwa(),
+                        sprzedaz.getUserID().getLogin(),
+                        sprzedaz.getCena().intValue(),
+                        sprzedaz.getDatasprzedazy().toString()
+                ))
+                .collect(Collectors.toList());
+    }
+
+
+    public List<SprzedazDetailDTO> findSprzedazDetailsByUserId(Uzytkownicy user) {
+
+        List<Sprzedaz> sprzedaze = sprzedazRepository.findByUserID(user);
+
+        return sprzedaze.stream()
+                .map(sprzedaz -> new SprzedazDetailDTO(
+                        sprzedaz.getId(),
+                        sprzedaz.getGatunekID().getNazwagatunku(),
+                        sprzedaz.getWielkoscID().getOpiswielkosci(),
+                        sprzedaz.getStoiskoID().getStoiskonazwa(),
+                        sprzedaz.getUserID().getLogin(),
+                        sprzedaz.getCena().intValue(),
+                        sprzedaz.getDatasprzedazy().toString()
+                ))
+                .collect(Collectors.toList());
     }
 }
 

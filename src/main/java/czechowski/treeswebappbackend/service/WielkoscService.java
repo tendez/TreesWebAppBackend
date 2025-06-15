@@ -23,4 +23,9 @@ public class WielkoscService {
 
 
     }
+    public WielkoscDTO findWielkoscById(Integer id) {
+        var wielkosc = wielkoscRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Wielkość nie znaleziona"));
+        return new WielkoscDTO(wielkosc.getId(), wielkosc.getOpiswielkosci());
+    }
 }
