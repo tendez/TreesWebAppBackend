@@ -50,6 +50,7 @@ public class SprzedazController {
             SprzedazDTO sprzedazDTO = sprzedazService.createSprzedaz(request, userLogin);
             return ResponseEntity.ok(sprzedazDTO);
         } catch (Exception e) {
+            e.printStackTrace();
             return ResponseEntity.badRequest().build();
         }
     }

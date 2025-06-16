@@ -20,10 +20,17 @@ public class SprzedazService {
 
     @Autowired
     private SprzedazRepository sprzedazRepository;
-    private  UzytkownicyRepository uzytkownicyRepository;
-    private  StoiskoRepository stoiskoRepository;
-    private  GatunekRepository gatunekRepository;
-    private  WielkoscRepository wielkoscRepository;
+    private final UzytkownicyRepository uzytkownicyRepository;
+    private final StoiskoRepository stoiskoRepository;
+    private final GatunekRepository gatunekRepository;
+    private final WielkoscRepository wielkoscRepository;
+
+    public SprzedazService(UzytkownicyRepository uzytkownicyRepository, StoiskoRepository stoiskoRepository, GatunekRepository gatunekRepository, WielkoscRepository wielkoscRepository) {
+        this.uzytkownicyRepository = uzytkownicyRepository;
+        this.stoiskoRepository = stoiskoRepository;
+        this.gatunekRepository = gatunekRepository;
+        this.wielkoscRepository = wielkoscRepository;
+    }
 
 
     public List<SprzedazDTO> findSprzedazDTOsByStoiskoId(Stoisko stoisko) {
@@ -116,6 +123,7 @@ public class SprzedazService {
                         sprzedaz.getWielkoscID().getOpiswielkosci(),
                         sprzedaz.getStoiskoID().getStoiskonazwa(),
                         sprzedaz.getUserID().getLogin(),
+
                         sprzedaz.getCena().intValue(),
                         sprzedaz.getDatasprzedazy().toString()
                 ))
@@ -140,7 +148,3 @@ public class SprzedazService {
                 .collect(Collectors.toList());
     }
 }
-
-
-
-
