@@ -3,7 +3,6 @@ package czechowski.treeswebappbackend.controller;
 
 import czechowski.treeswebappbackend.dto.MagazynDTO;
 import czechowski.treeswebappbackend.dto.UpdateMagazynRequest;
-import czechowski.treeswebappbackend.model.Stoisko;
 import czechowski.treeswebappbackend.service.MagazynService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

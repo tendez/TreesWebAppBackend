@@ -1,4 +1,3 @@
-
 package czechowski.treeswebappbackend.config;
 
 import org.springframework.context.annotation.Configuration;

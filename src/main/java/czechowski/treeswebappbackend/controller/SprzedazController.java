@@ -32,6 +32,7 @@ public class SprzedazController {
         return sprzedazService.findSprzedazDTOsByUserID(userId);
 
     }
+
     @GetMapping("/details/bystoiskoid/{id}")
     public List<SprzedazDetailDTO> getSprzedazDetailsById(@PathVariable("id") Stoisko stoiskoId) {
         return sprzedazService.findSprzedazDetailsById(stoiskoId);

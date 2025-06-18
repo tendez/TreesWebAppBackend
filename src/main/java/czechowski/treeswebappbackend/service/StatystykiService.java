@@ -1,7 +1,10 @@
 // src/main/java/czechowski/treeswebappbackend/service/StatystykiService.java
 package czechowski.treeswebappbackend.service;
 
-import czechowski.treeswebappbackend.dto.*;
+import czechowski.treeswebappbackend.dto.SprzedazPoDniachDTO;
+import czechowski.treeswebappbackend.dto.SprzedazPoGatunkuDTO;
+import czechowski.treeswebappbackend.dto.SprzedazPoRozmiarzeDTO;
+import czechowski.treeswebappbackend.dto.StatystykiDTO;
 import czechowski.treeswebappbackend.model.Sprzedaz;
 import czechowski.treeswebappbackend.repository.SprzedazRepository;
 import czechowski.treeswebappbackend.repository.StoiskoRepository;
@@ -10,7 +13,6 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.util.List;
 import java.util.stream.Collectors;
 
 @Service

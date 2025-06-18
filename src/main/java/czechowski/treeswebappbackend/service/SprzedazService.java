@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -73,6 +72,7 @@ public class SprzedazService {
                         sprzedaz.getDatasprzedazy().toString()))
                 .toList();
     }
+
     public SprzedazDTO createSprzedaz(CreateSprzedazRequest request, String userLogin) {
 
         Uzytkownicy user = uzytkownicyRepository.findByLogin(userLogin)
@@ -112,6 +112,7 @@ public class SprzedazService {
                 savedSprzedaz.getDatasprzedazy().toString()
         );
     }
+
     public List<SprzedazDetailDTO> findSprzedazDetailsById(Stoisko stoisko) {
 
         List<Sprzedaz> sprzedaze = sprzedazRepository.findByStoiskoID(stoisko);

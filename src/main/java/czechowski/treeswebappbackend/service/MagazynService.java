@@ -11,7 +11,6 @@ import czechowski.treeswebappbackend.repository.MagazynRepository;
 import czechowski.treeswebappbackend.repository.StoiskoRepository;
 import czechowski.treeswebappbackend.repository.WielkoscRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

@@ -24,6 +24,7 @@ public class GatunekService {
 
 
     }
+
     public GatunekDTO findGatunekById(Integer id) {
         var gatunek = gatunekRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Gatunek nie znaleziony"));

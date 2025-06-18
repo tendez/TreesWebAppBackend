@@ -1,4 +1,3 @@
-
 package czechowski.treeswebappbackend.dto;
 
 public record SprzedazDetailDTO(
